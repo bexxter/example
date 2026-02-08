@@ -3,19 +3,17 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
-Module Name: Property
-Description: Module created for Property
+Module Name: Car
+Description: Module created for car management
 Version: 2.3.0
 Author: Websicon Infoworld Pvt Ltd
 Author URI: https://websicon.in/
 Requires at least: 2.3.*
 */
 
-
-
 $config['module_name']  = 'property';   // must match folder name
-$config['name']         = 'Property';
-$config['description']  = 'Module to manage properties';
+$config['name']         = 'Car';
+$config['description']  = 'Module to manage cars';
 $config['author']       = 'Your Name';
 $config['version']      = '1.0.0';
 $config['requires']     = ['perfex_version' => '3.0.0'];
@@ -23,10 +21,10 @@ $config['requires']     = ['perfex_version' => '3.0.0'];
 
 // Define module permissions
 $config['permissions'] = [
-    'view'   => _l('permission_view_property'),
-    'create' => _l('permission_create_property'),
-    'edit'   => _l('permission_edit_property'),
-    'delete' => _l('permission_delete_property')
+    'view'   => _l('permission_view_car'),
+    'create' => _l('permission_create_car'),
+    'edit'   => _l('permission_edit_car'),
+    'delete' => _l('permission_delete_car')
 ];
 
 
@@ -68,13 +66,13 @@ function property_module_permissions()
     $capabilities = [];
 
     $capabilities['capabilities'] = [
-        'view'   => _l('permission_view_property'),
-        'create' => _l('permission_create_property'),
-        'edit'   => _l('permission_edit_property'),
-        'delete' => _l('permission_delete_property'),
+        'view'   => _l('permission_view_car'),
+        'create' => _l('permission_create_car'),
+        'edit'   => _l('permission_edit_car'),
+        'delete' => _l('permission_delete_car'),
     ];
 
-    register_staff_capabilities('property', $capabilities, _l('property_list'));
+    register_staff_capabilities('car', $capabilities, _l('car_list'));
 }
 
 
@@ -88,26 +86,22 @@ function property_init_menu_items()
      * If the logged in user is administrator, add custom menu in Setup
      */
 
-    if (has_permission('permission_view_property', '', 'view') ) {
-
-
-
-        $CI->app_menu->add_sidebar_menu_item('property', [
-            'slug' => 'property',
-            'name' => _l('property'),
-            'icon' => 'fa fa-cog',
+    if (has_permission('car', '', 'view')) {
+        $CI->app_menu->add_sidebar_menu_item('car', [
+            'slug' => 'car',
+            'name' => _l('car_list'),
+            'icon' => 'fa fa-car',
             'href' => '',
             'position' => 34,
         ]);
 
 
-        $CI->app_menu->add_sidebar_children_item('property', [
-            'slug' => 'property',
-            'name' => _l('property'),
-            'href' => admin_url('property/'),
+        $CI->app_menu->add_sidebar_children_item('car', [
+            'slug' => 'car',
+            'name' => _l('car_list'),
+            'href' => admin_url('car/'),
             'icon' => '',
             'position' => 34,
         ]);
- 
     }
 }
